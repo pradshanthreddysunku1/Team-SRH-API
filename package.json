@@ -28,6 +28,7 @@
     "free-google-image-search": "^1.0.0",
     "free-google-images": "^1.2.1",
     "google-images": "^2.1.0",
+    "install": "^0.13.0",
     "jsonwebtoken": "^8.5.1",
     "language-list": "0.0.3",
     "mongoose": "^5.13.13",

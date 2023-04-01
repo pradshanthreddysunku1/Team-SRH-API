@@ -12,10 +12,6 @@ app.use(cors());
 var languages = require('language-list')();
 // parse requests of content-type - application/json
 app.use(express.json());
-//1519a03fdcfc8450a
-
-//AIzaSyDENRPI8j4SWLxvhjnNIW5cDN7Ejhbqu_o
-
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
 
@@ -69,11 +65,11 @@ app.get("/api/languages", (req, res) => {
   res.json(languages.getData())
 })
 
-app.post('/images', (req, res) => {
+app.post('/api/images', (req, res) => {
   try {
     client.search(req.body.text)
       .then(images => {
-        res.send(images);
+        res.json(images);
       });
   } catch (err) {
     res.json(err);
