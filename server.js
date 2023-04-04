@@ -1,4 +1,6 @@
 const express = require("express");
+
+require('dotenv').config({path: __dirname + '/.env'})
 const cors = require("cors");
 const cookieSession = require("cookie-session");
 const { Configuration, OpenAIApi } = require("openai");
@@ -10,8 +12,6 @@ const config = new Configuration({
   apiKey: `${process.env.OPENAI_KEY}` 
 });
 const openai = new OpenAIApi(configuration);
-
-
 
 const translate = require('translate-google');
 const GoogleImages = require('google-images');
