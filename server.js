@@ -15,7 +15,7 @@ const openai = new OpenAIApi(configuration);
 
 const translate = require('translate-google');
 const GoogleImages = require('google-images');
-const client = new GoogleImages(`${process.env.GOOGLE_CLIENT_KEY}`, `${process.env.GOOGLE_API_KEY}`);
+const client = new GoogleImages('1519a03fdcfc8450a', 'AIzaSyDENRPI8j4SWLxvhjnNIW5cDN7Ejhbqu_o');
 app.use(cors());
 var languages = require('language-list')();
 // parse requests of content-type - application/json
