@@ -1,6 +1,7 @@
 const express = require("express");
 
-require('dotenv').config({path: __dirname + '/.env'})
+const dotenv = require('dotenv');
+dotenv.config();
 const cors = require("cors");
 const cookieSession = require("cookie-session");
 const { Configuration, OpenAIApi } = require("openai");
@@ -15,7 +16,7 @@ const openai = new OpenAIApi(configuration);
 
 const translate = require('translate-google');
 const GoogleImages = require('google-images');
-const client = new GoogleImages('1519a03fdcfc8450a', 'AIzaSyDENRPI8j4SWLxvhjnNIW5cDN7Ejhbqu_o');
+const client = new GoogleImages(`${process.env.GOOGLE_CLIENT_KEY}`, `${process.env.GOOGLE_API_KEY}`);
 app.use(cors());
 var languages = require('language-list')();
 // parse requests of content-type - application/json
