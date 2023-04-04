@@ -10,13 +10,17 @@ const youtubesearchapi = require("youtube-search-api");
 const dbConfig = require("./app/config/db.config");
 const app = express();
 const config = new Configuration({
-  apiKey: `${process.env.OPENAI_KEY}` 
+  apiKey: process.env.OPENAI_KEY
 });
+console.log("open ai key", process.env.OPENAI_KEY)
 const openai = new OpenAIApi(configuration);
 
 const translate = require('translate-google');
 const GoogleImages = require('google-images');
-const client = new GoogleImages(`${process.env.GOOGLE_CLIENT_KEY}`, `${process.env.GOOGLE_API_KEY}`);
+const client = new GoogleImages(process.env.GOOGLE_CLIENT_KEY, process.env.GOOGLE_API_KEY);
+console.log("Google images key", process.env.GOOGLE_CLIENT_KEY);
+console.log("Google images key",process.env.GOOGLE_API_KEY);
+
 app.use(cors());
 var languages = require('language-list')();
 // parse requests of content-type - application/json
