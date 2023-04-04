@@ -6,8 +6,8 @@ const youtubesearchapi = require("youtube-search-api");
 
 const dbConfig = require("./app/config/db.config");
 const app = express();
-const configuration = new Configuration({
-  apiKey: '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',
+const config = new Configuration({
+  apiKey: `${process.env.OPENAI_KEY}` 
 });
 const openai = new OpenAIApi(configuration);
 
@@ -15,7 +15,7 @@ const openai = new OpenAIApi(configuration);
 
 const translate = require('translate-google');
 const GoogleImages = require('google-images');
-const client = new GoogleImages('1519a03fdcfc8450a', 'AIzaSyDENRPI8j4SWLxvhjnNIW5cDN7Ejhbqu_o');
+const client = new GoogleImages(`${process.env.GOOGLE_CLIENT_KEY}`, `${process.env.GOOGLE_API_KEY}`);
 app.use(cors());
 var languages = require('language-list')();
 // parse requests of content-type - application/json
