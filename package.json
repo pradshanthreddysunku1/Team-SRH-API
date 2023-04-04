@@ -32,6 +32,8 @@
     "jsonwebtoken": "^8.5.1",
     "language-list": "0.0.3",
     "mongoose": "^5.13.13",
-    "translate-google": "^1.5.0"
+    "openai": "^3.2.1",
+    "translate-google": "^1.5.0",
+    "youtube-search-api": "^1.1.1"
   }
 }

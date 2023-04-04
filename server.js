@@ -1,9 +1,17 @@
 const express = require("express");
 const cors = require("cors");
 const cookieSession = require("cookie-session");
+const { Configuration, OpenAIApi } = require("openai");
+const youtubesearchapi = require("youtube-search-api");
 
 const dbConfig = require("./app/config/db.config");
 const app = express();
+const configuration = new Configuration({
+  apiKey: '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',
+});
+const openai = new OpenAIApi(configuration);
+
+
 
 const translate = require('translate-google');
 const GoogleImages = require('google-images');
@@ -120,4 +128,30 @@ function initial() {
       });
     }
   });
+
+  app.post('/api/message', (req, res) => {
+    // {prompt: "This is the message"}
+    const response = openai.createCompletion({
+      model: 'text-davinci-003',
+      prompt: req.body.prompt,
+      temperature: 0,
+      top_p: 1,
+      frequency_penalty: 0,
+      presence_penalty: 0,
+      max_tokens: 256
+    });
+
+    response.then((data) => {
+      res.send({ message: data.data.choices[0].text })
+    }).catch((err) => {
+      res.send({ message: err })
+    })
+
+  });
+
+  app.get('/api/videos/:keyword', async (req, res) => {
+    let videos = await youtubesearchapi.GetListByKeyword(req.params.keyword, true, 10, [{ type: "video" }]);
+    console.log(videos);
+    res.json(videos);
+  })
 }
