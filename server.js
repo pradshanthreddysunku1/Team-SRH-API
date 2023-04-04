@@ -13,7 +13,7 @@ const config = new Configuration({
   apiKey: process.env.OPENAI_KEY
 });
 console.log("open ai key", process.env.OPENAI_KEY)
-const openai = new OpenAIApi(configuration);
+const openai = new OpenAIApi(config);
 
 const translate = require('translate-google');
 const GoogleImages = require('google-images');
