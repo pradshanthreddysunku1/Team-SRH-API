@@ -32,6 +32,7 @@
     "install": "^0.13.0",
     "jsonwebtoken": "^8.5.1",
     "language-list": "0.0.3",
+    "mongo-join-query": "^1.0.2",
     "mongoose": "^5.13.13",
     "openai": "^3.2.1",
     "translate-google": "^1.5.0",

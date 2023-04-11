@@ -6,6 +6,7 @@ const cors = require("cors");
 const cookieSession = require("cookie-session");
 const { Configuration, OpenAIApi } = require("openai");
 const youtubesearchapi = require("youtube-search-api");
+const feedback = require("./app/routes/feedback.routes")
 
 const dbConfig = require("./app/config/db.config");
 const app = express();
@@ -20,6 +21,8 @@ const GoogleImages = require('google-images');
 const client = new GoogleImages(process.env.GOOGLE_CLIENT_KEY, process.env.GOOGLE_API_KEY);
 console.log("Google images key", process.env.GOOGLE_CLIENT_KEY);
 console.log("Google images key",process.env.GOOGLE_API_KEY);
+
+app.use("/api", feedback);
 
 app.use(cors());
 var languages = require('language-list')();
@@ -93,6 +96,7 @@ app.post('/api/images', (req, res) => {
 require("./app/routes/auth.routes")(app);
 require("./app/routes/user.routes")(app);
 
+
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
@@ -159,4 +163,5 @@ function initial() {
     console.log(videos);
     res.json(videos);
   })
+
 }
