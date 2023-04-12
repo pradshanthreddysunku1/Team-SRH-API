@@ -7,6 +7,7 @@ const cookieSession = require("cookie-session");
 const { Configuration, OpenAIApi } = require("openai");
 const youtubesearchapi = require("youtube-search-api");
 const feedback = require("./app/routes/feedback.routes")
+const history = require("./app/routes/history.routes")
 
 const dbConfig = require("./app/config/db.config");
 const app = express();
@@ -23,6 +24,7 @@ console.log("Google images key", process.env.GOOGLE_CLIENT_KEY);
 console.log("Google images key",process.env.GOOGLE_API_KEY);
 
 app.use("/api", feedback);
+app.use("/api", history);
 
 app.use(cors());
 var languages = require('language-list')();
