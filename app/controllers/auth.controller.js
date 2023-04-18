@@ -201,6 +201,7 @@ exports.signin = (req, res) => {
         lastName:user.lastName,
         email: user.email,
         roles: authorities,
+        isActivated: user.isActivated
       });
     });
 };
