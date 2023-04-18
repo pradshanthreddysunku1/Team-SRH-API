@@ -1,5 +1,6 @@
 const { authJwt } = require("../middlewares");
 const controller = require("../controllers/user.controller");
+const authController = require("../controllers/auth.controller");
 
 module.exports = function(app) {
   app.use(function(req, res, next) {
@@ -25,4 +26,21 @@ module.exports = function(app) {
     [authJwt.verifyToken, authJwt.isAdmin],
     controller.adminBoard
   );
+
+  app.post(
+    "/api/account-activate",
+    authController.activate
+  )
+
+  app.post(
+    "/api/reset-password",
+    authController.resetPassword
+  )
+
+  app.post(
+    "/api/forgot-password",
+    authController.forgotPassword
+  )
+
+  
 };

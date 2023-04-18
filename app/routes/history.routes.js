@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const history = require('../models/history.model');
+const feedback = require('../models/feedback.model');
 const router = express.Router();
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json({ limit: '50mb', extended: true }))
@@ -35,13 +36,15 @@ router.get("/history/:userId", async (req,res)=> {
       }
 })
 
-router.delete("/history/:id", async (req,res)=>{
+router.post("/history/:id", async (req,res)=>{
     try {
        const result = await history.findOneAndDelete( { "_id" : req.params.id } );
        if(result["_id"]){
+       await feedback.findOneAndDelete( { "inputText" : req.body.inputText, "outputText" : req.body.outputText } );
         res.json({"success" : true})
        }else{
         res.json({
+
             "success" : false
         })
        }       
